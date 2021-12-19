@@ -10,9 +10,7 @@ export class Scopes implements CanActivate {
     ) { }
 
     async canActivate(context: ExecutionContext) {
-        try {
-            console.log("huhuhuhuhuhu");
-            
+        try {            
             const request = context.switchToHttp().getRequest();
 
             const { user } = request
@@ -20,7 +18,7 @@ export class Scopes implements CanActivate {
             if (!user) {
                 return false
             }
-
+            
             const { roleAccess } = user
 
             if (!roleAccess || !roleAccess.length) {
@@ -36,7 +34,7 @@ export class Scopes implements CanActivate {
                 studentIds,
                 roleNames,
             } = getRoleAccess(roleAccess)
-
+            
             if (!this.requiredScopes || !this.requiredScopes.length) {
                 request.user = {
                     userId: user.userId,
@@ -53,12 +51,12 @@ export class Scopes implements CanActivate {
             const validclassScopes = checkScopes(this.requiredScopes, classScopes)
             const validStudentScopes = checkScopes(this.requiredScopes, studentScopes)
             const validSchoolScopes = checkScopes(this.requiredScopes, schoolScopes)
-
+            
             const validStudentIds = validStudentScopes.map(each => {
                 validRoleNames.push(each.roleName)
                 return each.studentId
             })
-
+            
             const validClassIds = validclassScopes.map(each => {
                 validRoleNames.push(each.roleName)
                 return each.classId

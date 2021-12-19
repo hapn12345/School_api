@@ -16,8 +16,6 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
         const user = await this.usersService.findOne({
             userName: username
         })
-        const passs = await bcrypt.hash(password, 10);
-        console.log(passs);
         
         if (!user) {
             throw new UnauthorizedException('UserNameNotFound')
