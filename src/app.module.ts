@@ -30,7 +30,7 @@ import { MeetingModule } from './packages/meeting/meeting.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'benpro123',
+      password: 'password',
       database: 'schoolkids',
       entities: ['/dist/**/*.schema{.ts, .js}'],
       synchronize: true,

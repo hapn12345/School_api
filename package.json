@@ -18,7 +18,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "seed": "./src/seeding/seeding.js"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.18",
@@ -33,8 +34,12 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "cloudinary": "^1.25.1",
+    "faker": "^5.5.3",
     "firebase-admin": "^9.9.0",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.15",
+    "lodash": "^4.17.21",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",

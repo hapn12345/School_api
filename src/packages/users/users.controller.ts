@@ -84,7 +84,7 @@ export class UserController {
     @UseGuards(AuthGuard('jwt'))
     @UsePipes(new ValidationPipe())
     async create(@Body() user: UserDto) {
-        console.log("===============================")
+
         const { roleName, classId, schoolId, studentId, status, password, ...createUserData } = user
 
         const hashPassword = await bcrypt.hash(password, 10);
