@@ -59,6 +59,19 @@ const seedingUserAccess = async ()=>{
     return userAccess
 }
 
+const seedingNews = async()=>{
+    const news = []
+    for(let i = 0; i < 10; i++) {
+        news.push({
+            id: i,
+            content: faker.lorem.lines(1),
+            description: faker.lorem.paragraph(2),
+            thumbnail: faker.image.image(),
+            releaseDate: faker.datatype.datetime(),
+        })
+    }
+    return news
+}
 
 const seeding = async () => {
    try {
@@ -71,6 +84,11 @@ const seeding = async () => {
     const userAccess = await Promise.resolve(seedingUserAccess()) 
     console.log(userAccess);
     await knex("user_access").insert(userAccess)
+    //news
+    await knex("news").del()
+    const news = await Promise.resolve(seedingNews()) 
+    console.log(news);
+    await knex("news").insert(news)
 
     knex.destroy()
    } catch (error) {
@@ -80,7 +98,5 @@ const seeding = async () => {
    }
 
 }
-
-
 
 seeding()

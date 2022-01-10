@@ -15,7 +15,6 @@ export class NewsService {
     }): Promise<News[]> {
         const res = await this.feeRepos.find({
             where: query,
-            relations: ['studentID']
         })
         return res
     }
