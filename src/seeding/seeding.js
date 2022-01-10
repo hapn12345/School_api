@@ -64,8 +64,8 @@ const seedingNews = async()=>{
     for(let i = 0; i < 10; i++) {
         news.push({
             id: i,
-            content: faker.lorem.lines(1),
-            description: faker.lorem.paragraph(2),
+            content: faker.lorem.lines(2),
+            description: faker.lorem.paragraph(5),
             thumbnail: faker.image.image(),
             releaseDate: faker.datatype.datetime(),
         })
