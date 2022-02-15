@@ -12,7 +12,9 @@ export class Class {
     @Column()
     fee: number
     
-    @Column()
+    @Column({
+        length:10000
+    })
     schedule: string
 
     @OneToMany(() => UserAccess, user => user.childClass)

@@ -6,12 +6,9 @@ export class Menu {
     @PrimaryGeneratedColumn('uuid')
     id: number;
 
-    @Column()
-    date: Date;
-
-    @Column()
+    @Column("longtext")
     content: string
-    
+
     
     @ManyToOne(() => Class, classs => classs.id, { onDelete: 'NO ACTION' })
     @JoinColumn({ name: 'classID' })

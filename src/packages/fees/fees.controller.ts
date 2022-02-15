@@ -25,8 +25,6 @@ export class FeeController {
     }
 
     @Get('/student/:id')
-    @UseGuards(new Scopes([[scopes.PER_READ_FEES]]))
-    @UseGuards(AuthGuard('jwt'))
     @UsePipes(new ValidationPipe())
     async findStudentFee(@Param() id) {
         return await this.feeService.findMany({

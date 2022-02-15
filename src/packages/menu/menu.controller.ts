@@ -16,6 +16,11 @@ export class MenuController {
         return await this.classService.findOne(id)
     }
 
+    @Get('/class/:id')
+    async findByClassID(@Param() id) {
+        return await this.classService.getMenuByClassID(id)
+    }
+
     @Post('')
     async create(@Body() oneMenu: IMenu) {
         return await this.classService.create(oneMenu)

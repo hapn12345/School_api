@@ -4,6 +4,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 
 @Entity()
 export class LeaveDay {
+
     @PrimaryGeneratedColumn('uuid')
     id: number;
 

@@ -29,18 +29,18 @@ export class MeetingService {
         });
     }
 
-    async create(school: Meeting): Promise<Meeting> {
-        return await this.meetingRepos.save(school)
+    async create(meeting: Meeting): Promise<Meeting> {
+        return await this.meetingRepos.save(meeting);
     }
 
     async update(updateData: Meeting, id): Promise<Meeting> {
         try {
-            const school = await this.meetingRepos.findOne(id);
-            if (!school) {
+            const meeting = await this.meetingRepos.findOne(id);
+            if (!meeting) {
                 throw new NotFoundException('MeetingNotFound');
             }
             const updateMeeting = await this.meetingRepos.save({
-                ...school,
+                ...meeting,
                 ...updateData
             })
             return updateMeeting

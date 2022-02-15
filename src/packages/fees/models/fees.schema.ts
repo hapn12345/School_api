@@ -8,7 +8,7 @@ export class Fee {
     id: number;
 
     @Column()
-    fee: Number;
+    fee: number;
 
     @Column()
     month: string

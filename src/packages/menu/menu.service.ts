@@ -17,7 +17,6 @@ export class MenuService {
             return new IMenu(
               {
                 menu: JSON.parse(x.content),
-                date: x.date,
                 id: x.id
 
               }
@@ -36,7 +35,6 @@ export class MenuService {
             return new IMenu(
               {
                 menu: JSON.parse(x.content),
-                date: x.date,
                 id: x.id
               }
             )
@@ -50,17 +48,23 @@ export class MenuService {
         return new IMenu(
             {
               menu: JSON.parse(menu.content),
-              date: menu.date,
               id: menu.id
             }
           )
+    }
+
+    async getMenuByClassID(classID): Promise<Menu> {
+        return await this.menuRepos.findOne({
+            where: {
+                classID: classID
+            }
+        });
     }
 
     async create(data: IMenu): Promise<Menu> {
         const menu  = new Menu(
             {
                 content: JSON.stringify(data.menu),
-                date: data.date,
                 classID: data.classID
             }
         ) 
@@ -76,7 +80,6 @@ export class MenuService {
             const menu  = new Menu(
                 {
                     content: JSON.stringify(updateData.menu),
-                    date: updateData.date,
                     classID: updateData.classID
                 }
             ) 

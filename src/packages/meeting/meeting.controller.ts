@@ -5,30 +5,30 @@ import { MeetingService } from "./meeting.service";
 @Controller('meeting')
 
 export class MeetingController {
-    constructor(private schoolService: MeetingService) { }
+    constructor(private meetingService: MeetingService) { }
 
     @Get('')
     async findAll() {
-        return await this.schoolService.findAll();
+        return await this.meetingService.findAll();
     }
 
     @Get(':id')
     async findOne(@Param() id) {
-        return await this.schoolService.findOne(id);
+        return await this.meetingService.findOne(id);
     }
 
     @Put(':id')
-    async update(@Body() school: Meeting, @Param() id) {
-        return await this.schoolService.update(school, id);
+    async update(@Body() meeting: Meeting, @Param() id) {
+        return await this.meetingService.update(meeting, id);
     }
 
     @Post('')
-    async create(@Body() school: Meeting) {
-        return await this.schoolService.create(school);
+    async create(@Body() meeting: Meeting) {
+        return await this.meetingService.create(meeting);
     }
 
     @Delete(':id')
     async delete(@Param() id) {
-        return await this.schoolService.delete(id);
+        return await this.meetingService.delete(id);
     }
 }
