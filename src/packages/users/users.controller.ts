@@ -12,7 +12,6 @@ import { StudentService } from "../students/students.service";
 import { ClassService } from "../classes/classes.service";
 import { In } from "typeorm";
 import { SchoolService } from "../schools/schools.service";
-
 @Controller('users')
 export class UserController {
     constructor(
@@ -25,8 +24,50 @@ export class UserController {
 
 
     @Get('')
+    
     @UseGuards(AuthGuard('jwt'))
-    async findAll(): Promise<User[]> {
+    async findAll(   @Request() { user }) {
+        console.log(user.roleAccess[0]);
+        if(user.roleAccess[0].roleName ==='ADMIN'){
+            console.log(">?????????????????");
+            
+            let users =  await this.userService.findAll()
+            console.log(users);
+
+            const userTemp = await Promise.all(users.map( async x=>{
+                
+                const currentUser = await this.userAccessService.findByUserId({userId: x.id})
+               if(currentUser) {
+                const { studentId, classId, schoolId } = currentUser
+                const [ students, classes, schools] = await Promise.all([
+                    this.studentsService.findMany({
+                        query: {
+                            id: studentId
+                        }
+                    }),            
+                    this.classService.findMany({
+                        query: {
+                            id: classId
+                        }
+                    }),
+                    this.schoolService.findMany({
+                        query: {
+                            id: schoolId
+                        }
+                    }),
+                    ]);
+    
+                    return {
+                        ...currentUser,
+                        classes,
+                        students,
+                        schools
+                    }
+               }
+            }))
+            return userTemp
+
+        }
         return await this.userService.findAll()
     }
 

@@ -19,3 +19,8 @@ export interface FindManyQuery {
 export interface FindManyUserAccessInteface {
     query: FindManyQuery
 }
+
+
+export interface findByUserId {
+    userId: string
+}

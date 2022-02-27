@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
-import { FindManyUserAccessInteface, UserAccessInterface } from "./models/user_access.interface";
+import { FindManyUserAccessInteface, UserAccessInterface , findByUserId} from "./models/user_access.interface";
 import { UserAccess } from "./models/user_access.schema";
 
 @Injectable()
@@ -22,6 +22,16 @@ export class UserAccessService {
             where: query
         });
     }
+
+    async findByUserId({
+        userId
+    }: findByUserId): Promise<UserAccess> {
+        return await this.userAccessRepository.findOne({
+            where: {userId: userId}
+        });
+    }
+
+
 
     async update(updateData: UserAccess, id): Promise<UserAccess> {
         try {
